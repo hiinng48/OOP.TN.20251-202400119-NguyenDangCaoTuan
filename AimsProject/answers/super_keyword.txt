@@ -1,0 +1,7 @@
+1. super(arguments)
+Dùng khi ta muốn gọi constructor của lớp cha ngay trong constructor của lớp con. Nó bắt buộc phải đứng ở dòng đầu tiên. Trong ví dụ của lớp Book, câu super(title, cost, category) đơn giản là: “khởi tạo mấy cái thuộc tính chung trước đã”.
+
+2. super.memberName
+Dùng để gọi phương thức hoặc biến được định nghĩa trong lớp cha. Ví dụ trong toString() của Book, việc gọi super.toString() nghĩa là: “lấy phần mô tả chung mà lớp cha đã viết sẵn để khỏi phải viết lại”.
+
+Cả hai cách dùng đều giúp lớp con tận dụng lại những gì lớp cha đã có, tránh trùng code và rõ ràng hơn khi đọc.
