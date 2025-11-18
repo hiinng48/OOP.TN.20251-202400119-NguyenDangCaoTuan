@@ -1,60 +1,24 @@
 package com.hust.kstn.models;
 
-public class DigitalVideoDisc {
-    private int id;
-    private String title;
-    private String category;
+public class DigitalVideoDisc extends Media {
     private String director;
     private int length;
-    private double cost;
-
-    private static int nbDigitalVideoDiscs = 0;
-
-    public DigitalVideoDisc(String title) {
-        this.title = title;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
-    }
-
-    public DigitalVideoDisc(String title, String category, double cost) {
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
-    }
-
-    public DigitalVideoDisc(String title, String category, String director, double cost) {
-        this.title = title;
-        this.category = category;
-        this.director = director;
-        this.cost = cost;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
-    }
 
     public DigitalVideoDisc(String title, String category, String director, int length, double cost) {
-        this.title = title;
-        this.category = category;
+        super(title, category, cost); 
         this.director = director;
         this.length = length;
-        this.cost = cost;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
     }
 
-    public int getId() { return id; }
-    public String getTitle() { return title; }
-    public String getCategory() { return category; }
-    public String getDirector() { return director; }
-    public int getLength() { return length; }
-    public double getCost() { return cost; }
+    public String getDirector() {
+        return director;
+    }
+    public int getLength() {
+        return length;
+    }
 
-    //2.3 overide
     @Override
     public String toString() {
-        return "DVD[" + this.id + "] - [" + this.title + "] - [" + this.cost + "] - [" 
-                + this.length + "] - [" + this.category + "] - [" + this.director + "]";
+        return "DVD" + super.toString() + "[" + this.length + "][" + this.director + "]";
     }
-    //end 2.3
 }
