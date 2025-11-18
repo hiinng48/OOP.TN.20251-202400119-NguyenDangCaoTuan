@@ -10,7 +10,7 @@ public class Aims {
         anOrder.addDigitalVideoDisc(dvd1);
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95);
         anOrder.addDigitalVideoDisc(dvd2);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", 18.99);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", "Ron Clements", 90, 18.99);
         anOrder.addDigitalVideoDisc(dvd3);
 
         anOrder.print();
