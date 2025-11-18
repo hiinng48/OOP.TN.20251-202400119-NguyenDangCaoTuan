@@ -49,4 +49,12 @@ public class DigitalVideoDisc {
     public String getDirector() { return director; }
     public int getLength() { return length; }
     public double getCost() { return cost; }
+
+    //2.3 overide
+    @Override
+    public String toString() {
+        return "DVD[" + this.id + "] - [" + this.title + "] - [" + this.cost + "] - [" 
+                + this.length + "] - [" + this.category + "] - [" + this.director + "]";
+    }
+    //end 2.3
 }
