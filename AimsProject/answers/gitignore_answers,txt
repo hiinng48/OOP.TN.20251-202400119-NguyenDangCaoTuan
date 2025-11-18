@@ -1,0 +1,13 @@
+1. Tại sao những đường dẫn trên nên được thêm vào .gitignore?
+Các file và thư mục như .settings, bin, .classpath, .project là các file chứa cấu hình riêng, môi trường,... của Eclipse (nói chung không chứa mã nguồn). Khi làm việc nhóm, mỗi người có thể có một cấu hình khác nhau. Đưa chúng vào repo chung sẽ gây ra xung đột (conflict) không cần thiết, làm nhiễu lịch sử commit và gây nhiều file rác. Vì vậy, chúng ta bỏ qua chúng để đảm bảo project sạch và chạy được trên bất kì máy nào (với cấu hình, môi trường, ide, setting,... riêng).
+
+2. Nếu sử dụng IntelliJ IDEA hoặc VSCode, những đường dẫn nào sẽ được thêm vào?
+- IntelliJ IDEA: .idea/, file *.iml
+- VSCode: .vscode/
+
+3. Nếu đã lỡ commit các file tạm lên Git, làm thế nào để Git ngừng theo dõi chúng mà không xóa khỏi máy?
+Bước 1: Thêm các file/thư mục đó vào file .gitignore.
+Bước 2: Xóa chúng khỏi cache của Git nhưng vẫn giữ lại trên local:
+  git rm --cached <tên file hoặc thư mục>
+Bước 3: Sau khi untrack xong thì commit lưu thay đổi:
+  git commit -m "untracked temp files"

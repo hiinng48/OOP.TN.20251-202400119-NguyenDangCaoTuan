@@ -1,0 +1,17 @@
+Lý do Java chỉ cho phép kế thừa một lớp (đơn kế thừa)?
+
+Java không cho đa kế thừa vì nó dễ gây rối, đặc biệt là Diamond Problem. Ví dụ như:
+
+A là lớp gốc
+B và C đều kế thừa A
+D lại kế thừa cả B lẫn C
+
+Nếu A có một method, rồi B và C mỗi ng override theo một kiểu khác nhau, thì khi D gọi method đó… Java không biết phải chọn bản của B hay của C. Rất mơ hồ.
+
+Thay vì phức tạp hóa mọi thứ như C++, Java quyết định đi đường an toàn:
+
+Chỉ cho kế thừa một lớp để tránh nhập nhằng.
+
+Cho implements nhiều interface để lớp vẫn có thể “nhấc” nhiều hành vi cùng lúc mà không đụng độ code, vì interface chỉ có phần khai báo.
+
+Như vậy code vừa rõ ràng, vừa đỡ đau đầu.
