@@ -1,0 +1,69 @@
+I. Vì sao tên của hai student không đổi sau khi gọi swap(s1, s2)? Java là pass-by-value hay pass-by-reference?
+
+Tên không đổi vì Java hoàn toàn là pass-by-value.
+Khi ta truyền object vào method, Java không truyền chính object, mà truyền một bản copy của reference(địa chỉ).
+Trong swap(Object o1, Object o2), hai biến o1 và o2 chỉ là bản sao reference của s1 và s2
+
+Ví dụ:
+
+Object tmp = o1;
+o1 = o2;
+o2 = tmp;
+
+chỉ làm o1 và o2 đổi chỗ trong phạm vi của method, còn s1 và s2 ở main thì vẫn trỏ về object cũ.
+Nên dữ liệu gốc không thay đổi
+
+
+
+
+
+II. Làm sao để viết swap cho đúng?
+
+Không thể viết một hàm swap chung chung để đổi hai reference cho caller trong Java được, vì Java luôn pass-by-value. Nhưng có thể đổi nội dung bên trong object.
+
+Ví dụ: swapContents(Student s1, Student s2) rồi đổi thủ công:
+
+String tmpName = s1.getName();
+s1.setName(s2.getName());
+s2.setName(tmpName);
+
+Vì mình đang dùng reference để chạm trực tiếp vào object trên heap, đổi field thì sẽ phản ánh ra ngoài
+
+
+
+
+
+III. Sơ đồ Stack – Heap minh hoạ
+1. Trước khi gọi swap(s1, s2)
+STACK (main)            HEAP
+-------------------     ------------------------------
+s1 → 0x100          →   0x100: Student(id=1, name="A")
+s2 → 0x200          →   0x200: Student(id=2, name="B")
+
+2. Khi vừa vào swap(s1, s2)
+STACK (swap)            STACK (main)        HEAP
+-------------------     -----------------   ------------------------------
+o1 → 0x100              s1 → 0x100          0x100: Student(id=1, name="A")
+o2 → 0x200              s2 → 0x200          0x200: Student(id=2, name="B")
+tmp = null
+
+3. Sau khi đổi chỗ o1 và o2 bên trong swap
+STACK (swap)            STACK (main)        HEAP
+-------------------     -----------------   ------------------------------
+o1 → 0x200              s1 → 0x100          0x100: Student(id=1, name="A")
+o2 → 0x100              s2 → 0x200          0x200: Student(id=2, name="B")
+tmp = 0x100
+
+→ Trong swap thì o1 và o2 đã đổi chỗ
+Nhưng s1 và s2 bên main vẫn trỏ về địa chỉ cũ
+
+4. Sau khi thoát khỏi swap
+Frame của swap bị xoá → mọi thứ trong swap biến mất
+
+STACK (main)            HEAP
+-------------------     ------------------------------
+s1 → 0x100          →   0x100: Student(id=1, name="A")
+s2 → 0x200          →   0x200: Student(id=2, name="B")
+
+
+Vì Java pass-by-value, swap chỉ đổi bản copy reference bên trong hàm → không ảnh hưởng đến s1 và s2.
