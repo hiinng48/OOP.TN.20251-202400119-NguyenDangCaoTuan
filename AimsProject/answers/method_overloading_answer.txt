@@ -1,0 +1,4 @@
+1. Chuyện gì xảy ra khi thêm phương thức addDVD(DigitalVideoDisc... discs), tại sao?
+- Khi thêm phương thức addDVD(DigitalVideoDisc... discs), ide báo lỗi "ambiguous method call".
+- Lý do: Varargs (biểu diễn bởi ...) và [] đều được biên dịch như 1 mảng -> 2 phương thức có chữ kí y hệt, không phân biệt được.
+- Giải pháp: Chỉ giữ lại một trong hai phương thức.
