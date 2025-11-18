@@ -60,6 +60,7 @@ public class Cart {
         }
     }
 
+    //2.3 print method + totalCost method
     public double totalCost() {
         double total = 0;
         for (int i = 0; i < qtyOrdered; i++) {
@@ -67,16 +68,21 @@ public class Cart {
         }
         return total;
     }
-
     public void print() {
-        System.out.println("________________________CART________________________");
-        System.out.println("Ordered Items:");
-        for (int i = 0; i < qtyOrdered; i++) {
-            System.out.println((i + 1) + ". DVD - " + itemsOrdered[i].getTitle() + " - " +
-                    itemsOrdered[i].getCategory() + " - " + itemsOrdered[i].getDirector() + " - " +
-                    itemsOrdered[i].getLength() + ": " + itemsOrdered[i].getCost() + "$");
+        System.out.println("======================= THE CURRENT CART =======================");
+        if (qtyOrdered == 0) {
+            System.out.println("Cart is empty.");
+            System.out.println("Subtotal: 0.0$");
+        } else {
+            System.out.println("Total items: [" + qtyOrdered + "]");
+            for (DigitalVideoDisc disc : itemsOrdered) {
+                if (disc != null) {
+                    System.out.println(disc.toString());
+                }
+            }
+            System.out.println("Subtotal: [" + this.totalCost() + "]$");
         }
-        System.out.println("Total cost: " + totalCost() + "$");
-        System.out.println("_____________________________________________________");
+        System.out.println("================================================================");
     }
+    // end 2.3
 }
